@@ -45,7 +45,7 @@ public class Main {
         System.out.print("Saldo inicial: ");
         double saldo = sc.nextDouble();
 
-        //mostra os dados iniciais 
+        //mostra os dados iniciais
         System.out.printf(String.format("""
                 *******************************************
                 Dados iniciais do cliente:
@@ -102,6 +102,10 @@ public class Main {
                     else{
                         saldo -= dinheiro;
                     }
+                    break;
+
+                case 4:
+                    System.out.println("Programa Encerrado");
                     break;
             }
         }
