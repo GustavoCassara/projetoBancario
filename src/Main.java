@@ -57,7 +57,12 @@ public class Main {
                 case 3: //calcula a retirada de valor do saldo
                     System.out.println("Digite o valor a ser transferido:");
                     dinheiro = sc.nextDouble();
-                    saldo -= dinheiro;
+                    if (saldo < dinheiro){
+                        System.out.println("Saldo insulficiente para transferência!");
+                    }
+                    else{
+                        saldo -= dinheiro;
+                    }
                     break;
             }
         }
