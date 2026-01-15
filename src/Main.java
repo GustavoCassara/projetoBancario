@@ -3,20 +3,27 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        double saldo = 3000.00;
         double dinheiro;
         int opcao = 0;
+
+        System.out.println("Digite os dados do cliente:");
+        System.out.print("Nome: ");
+        String nome = sc.nextLine();
+        System.out.print("Tipo de conta: ");
+        String tipoConta = sc.next();
+        System.out.print("Saldo inicial: ");
+        double saldo = sc.nextDouble();
 
         System.out.printf(String.format("""
                 *******************************************
                 Dados iniciais do cliente:
                 
-                Nome:           Gustavo Cassará de Almeida
-                Tipo de conta:  Corrente
-                Saldo inicial:  R$ 3000,00
+                Nome:           %s
+                Tipo de conta:  %s
+                Saldo inicial:  R$ %.2f
                 *******************************************
                 
-                """));
+                """,nome,tipoConta,saldo));
 
         while (opcao != 4) { //menu
             System.out.printf(String.format("""
