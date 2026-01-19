@@ -6,31 +6,33 @@ public class Main {
         Scanner sc = new Scanner(System.in);
 
         Tela tela = new Tela();
+        Cliente cliente = new Cliente();
+        Conta conta = new Conta();
 
-        double dinheiro;
-        int opcao = 0;
-        int tipoConta = 0;
+        //double dinheiro;
+        byte opcao = 0;
+        byte tipoConta = 0;
 
         //inserção dos dados inciais
         System.out.print(""" 
                 Digite os dados do cliente:
                 Nome:\s""");
-        tela.cliente.setNome(sc.nextLine());
+        cliente.setNome(sc.nextLine());
 
-        while (tipoConta != 1 && tipoConta != 2){ //seleciona um tipo de conta
+        while (tipoConta != 1 && tipoConta != 2) { //seleciona um tipo de conta
 
             //seleciona o tipo de conta
             tela.tipoConta();
 
-            tipoConta = sc.nextInt();
+            tipoConta = sc.nextByte();
 
-            switch (tipoConta){
+            switch (tipoConta) {
                 case 1:
-                    tela.cliente.conta = "Corrente";
+                    cliente.setConta("Corrente");
                     break;
 
                 case 2:
-                    tela.cliente.conta = "Poupança";
+                    cliente.setConta("Poupança");
                     break;
 
                 default:
@@ -41,46 +43,48 @@ public class Main {
         }
 
         System.out.print("Saldo inicial: ");
-        tela.cliente.saldo = sc.nextDouble();
+        conta.deposita(sc.nextDouble());
         System.out.println();
 
         //exibe o menu de dados iniciais
-        tela.dadosIniciais();
+        System.out.printf(String.format("""
+                *******************************************
+                Dados iniciais do cliente:
+                
+                Nome:           %s
+                Tipo de conta:  %s
+                Saldo inicial:  R$ %.2f
+                *******************************************\n
+                """, cliente.getNome(), cliente.getTipoConta(), conta.getSaldo()));
+
 
         while (opcao != 4) { //menu
             //menu de operações
             tela.operacoes();
 
-            opcao = sc.nextInt();
+            opcao = sc.nextByte();
 
-            switch (opcao){
+            switch (opcao) {
                 case 1: //mostra o saldo atualizado
-                    System.out.printf("O seu saldo é: R$ %.2f\n",tela.cliente.saldo);
+                    System.out.printf("O seu saldo é: R$ %.2f\n", conta.getSaldo());
                     System.out.println();
                     break;
 
                 case 2: //calcula o valor de deposito no saldo
                     System.out.println("Digite o Valor a ser depositado:");
-                    dinheiro = sc.nextDouble();
-                    tela.cliente.saldo += dinheiro;
+                    conta.deposita(sc.nextDouble());
                     break;
 
                 case 3: //calcula a retirada de valor do saldo
                     System.out.println("Digite o valor a ser transferido:");
-                    dinheiro = sc.nextDouble();
-                    if (tela.cliente.saldo < dinheiro){
-                        System.out.println("Saldo insulficiente para transferência!");
-                    }
-                    else{
-                        tela.cliente.saldo -= dinheiro;
-                    }
+                    conta.sacar(sc.nextDouble());
                     break;
 
                 case 4:
                     System.out.println("Programa Encerrado");
                     break;
 
-                default:{
+                default: {
                     System.out.println("Opção Inválida!");
                     System.out.println();
                     break;

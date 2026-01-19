@@ -1,19 +1,5 @@
 public class Tela {
 
-    Cliente cliente = new Cliente();
-
-    void dadosIniciais(){ //exibe o menu de dados iniciais
-        System.out.printf(String.format("""
-                *******************************************
-                Dados iniciais do cliente:
-                
-                Nome:           %s
-                Tipo de conta:  %s
-                Saldo inicial:  R$ %.2f
-                *******************************************\n
-                """,cliente.getNome(),cliente.conta,cliente.saldo));
-    }
-
     void tipoConta(){ //seleciona o tipo de conta
         System.out.print("""
                         Selecione o tipo de Conta:
